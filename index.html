@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>rock paper scissors</title>
+</head>
+<body>
+<p>
+Rock, Paper or Scissors Vs computer
+</p>
+<i>A round of  5 game. Enter game() in the console to begin</i>
+
+<script>
+const OPTIONS = ['rock','paper','scissor'];
+let computerWin = 0;
+let playerWin = 0;
+let draws = 0;
+
+function computerPlay(){
+	return OPTIONS[~~(Math.random()*OPTIONS.length)];
+}
+
+function playerSelection(){
+	let player;
+  while((player != "rock" && player != 'paper' && player != 'scissor')){
+     player = prompt("Rock,Paper or scissor?",'');
+     if(!(player === null || player === '')){
+     	player = player.toLowerCase();
+     }
+}
+  return player;
+}
+
+function checkWinner(computer,player){
+  let result;
+	if((computer == 'rock' && player == 'scissor') || (computer == 'paper' && player == 'rock') || (computer == 'scissor' && player == 'paper')){
+  	result = "Computer wins";
+    computerWin++;
+  }else if((computer == 'rock' && player == 'paper') || (computer == 'paper' && player == 'scissor') || (computer == 'scissor' && player == 'rock')){
+  	result = "Player wins";
+    playerWin++;
+  }else{
+  	result = 'A draw';
+    draws++;
+  }
+  return result;
+}
+
+function playRound(){
+	let computer = computerPlay();
+	let player = playerSelection();
+  let result = checkWinner(computer,player);
+  console.log(`Player Selection: ${player}`,`Computer Selection: ${computer}`,`Round Winner: ${result}`);
+}
+
+function game(){
+	let result;
+  let i;
+	for(i = 0; i < 5 ;){
+  	console.log(`Round: ${++i}`)
+  	playRound();
+  }
+  if(playerWin > computerWin){
+   result = "Player Wins";
+  }else if(computerWin > playerWin){
+  	result = "Computer Wins";
+  }else{
+  	result = "A Draw amazing.";
+  }
+  console.info(`Player wins: ${playerWin}`,`Computer wins: ${computerWin} `,`Draws: ${draws}`,`Result: ${result} ` );
+ 
+}
+
+</script>
+</body>
+
+
+</html>
